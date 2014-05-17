@@ -1,4 +1,4 @@
-'''
+"""
 RailGun.py
 @author     Tyler Parsons
 @created    17 May 2014
@@ -10,7 +10,7 @@ equation of motion.
 References:
 
 
-'''
+"""
 
 from browser import *
 from easel import *
@@ -51,6 +51,27 @@ cylinder = CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, hei
 mesh = Mesh(cylinder, MeshNormalMaterial({"wireframe": True, "wireframeLinewidth": 1}))
 space3D.add(mesh)
 
+# Data Display Pane
+canvas2D = document.createElement("canvas")
+canvas2D.style.position = "absolute"
+canvas2D.style.top = "0px"
+canvas2D.style.left = "0px"
+font = "20px Helvetica"
+color = "white"
+
+workbench2D = Workbench2D(canvas2D)
+space2D = Stage(canvas2D)
+space2D.autoClear = True
+
+xText = Text("x:    "+str(projectile.position.x), font, color)
+xText.x = 50
+xText.y = 50
+space2D.addChild(xText)
+vText = Text("v:    "+str(projectile.velocity.x), font, color)
+vText.x = 50
+vText.y = 75
+space2D.addChild(vText)
+
 # Model Animation
 def setUp():
     workbench3D.setUp()
@@ -68,9 +89,13 @@ def tick(t):
     space3D.camera.position.x = projectile.position.x
     space3D.camera.lookAt(projectile.position)
     space3D.render()
+    # Update data
+    xText.text = "x:    "+str(projectile.position.x)
+    vText.text = "v:    "+str(projectile.velocity.x)
+    space2D.render()
 
 def terminate(t):
-    return projectile.position.x > boreLength*3
+    return projectile.position.x > boreLength*2.5
 
 def tearDown(e):
     workbench3D.tearDown()
