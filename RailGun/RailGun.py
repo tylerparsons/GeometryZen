@@ -37,13 +37,16 @@ def setUp():
 
 def tick(t):
     # Define quantities for calculation
-    print "tick"
     x = projectile.position
     m = projectile.mass
     # Solve equation of motion
     projectile.acceleration = ((mu_0*I**2*x)/(m*pi))*(sqrt(w**2 + x**2) - x)
     projectile.velocity = projectile.velocity + projectile.acceleration * dt
     projectile.position = projectile.position + projectile.velocity * dt
+    print "tick"
+    print(projectile.acceleration)
+    print(projectile.velocity)
+    print(projectile.position)
     # Follow projectile
     space3D.camera.position.x = projectile.position.x
     space3D.camera.lookAt(projectile.position)
