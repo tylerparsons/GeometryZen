@@ -8,8 +8,9 @@ numerical solution to the differential
 equation of motion.
 
 References:
-
-
+http://www.geometryzen.org/users/geometryzen/repos/demos/blob/master/Physics/qubit-visualization.py
+http://www.geometryzen.org/users/geometryzen/repos/demos/blob/master/Physics/charged-particle-wire-1.py
+http://www.geometryzen.org/users/geometryzen/repos/demos/blob/master/Canvas-3D/Geometries/CylinderGeometry.py
 """
 
 from browser import *
@@ -31,6 +32,7 @@ dt = 0.01
 space3D = CartesianSpace()
 i = VectorE3(1, 0, 0)
 workbench3D = Workbench3D(space3D.renderer.domElement, space3D.renderer, space3D.camera)
+space3D.renderer.setClearColor(0x777777, 1.0)
 
 # Projectile Definition
 projectile = SphereBuilder().color("red").radius(w/2).build()
@@ -57,7 +59,7 @@ canvas2D.style.position = "absolute"
 canvas2D.style.top = "0px"
 canvas2D.style.left = "0px"
 font = "20px Courier New"
-color = "white"
+color = "#FFFFFF"
 
 workbench2D = Workbench2D(canvas2D)
 space2D = Stage(canvas2D)
