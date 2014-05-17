@@ -60,18 +60,21 @@ def tick(t):
     x = projectile.position
     m = projectile.mass
     # Solve equation of motion
-    a = ((mu_0*I*I*x)/(m*pi))*(sqrt(w*w + x*x) - x)
-    projectile.velocity = projectile.velocity + a * dt
+    if x.x <= boreLength
+        a = ((mu_0*I*I*x)/(m*pi))*(sqrt(w*w + x*x) - x)
+        projectile.velocity = projectile.velocity + a * dt
     projectile.position = projectile.position + projectile.velocity * dt
     # Follow projectile
     space3D.camera.position.x = projectile.position.x
     space3D.camera.lookAt(projectile.position)
     space3D.render()
-    
-def terminate(t):
-    return False
 
-def tearDown():
+def terminate(t):
+    return projectile.position.x > boreLength*3
+
+def tearDown(e):
     workbench3D.tearDown()
+    if e:
+        print e
 
 WindowAnimationRunner(tick, terminate, setUp, tearDown, window).start()
