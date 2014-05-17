@@ -45,7 +45,7 @@ def tick(t):
     x = projectile.position
     m = projectile.mass
     # Solve equation of motion
-    projectile.acceleration = ((mu_0*I**2*x)/(m*pi))*(sqrt(w**2 + x**2) - x))
+    projectile.acceleration = ((mu_0*I**2*x)/(m*pi))*(sqrt(w**2 + x**2) - x)
     projectile.velocity = projectile.velocity + projectile.acceleration * dt
     projectile.position = projectile.position + projectile.velocity * dt
     
