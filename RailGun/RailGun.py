@@ -56,7 +56,7 @@ canvas2D = document.createElement("canvas")
 canvas2D.style.position = "absolute"
 canvas2D.style.top = "0px"
 canvas2D.style.left = "0px"
-font = "20px Helvetica"
+font = "20px Courier New"
 color = "white"
 
 workbench2D = Workbench2D(canvas2D)
@@ -76,7 +76,7 @@ space2D.addChild(vText)
 def setUp():
     workbench3D.setUp()
 
-def tick(t):
+def step(t):
     # Define quantities for calculation
     x = projectile.position
     m = projectile.mass
@@ -102,4 +102,4 @@ def tearDown(e):
     if e:
         print e
 
-WindowAnimationRunner(tick, terminate, setUp, tearDown, window).start()
+WindowAnimationRunner(step, terminate, setUp, tearDown, window).start()
