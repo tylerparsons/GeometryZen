@@ -24,7 +24,7 @@ from geometry import *
 I = 1000
 mu_0 = 12.566E-7
 pi = 3.1415
-w = 1.0     # bore width
+w = 0.4     # bore width
 dt = 0.01
 
 # Model Geometry
@@ -45,7 +45,7 @@ radiusTop = w/2
 radiusBottom = w/2
 height = boreLength*2
 radialSegments = 32
-heightSegments = boreLength
+heightSegments = height
 openEnded = True
 cylinder = CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded, i)
 mesh = Mesh(cylinder, MeshNormalMaterial({"wireframe": True, "wireframeLinewidth": 1}))
@@ -60,7 +60,7 @@ def tick(t):
     x = projectile.position
     m = projectile.mass
     # Solve equation of motion
-    if x.x <= boreLength
+    if x.x <= boreLength:
         a = ((mu_0*I*I*x)/(m*pi))*(sqrt(w*w + x*x) - x)
         projectile.velocity = projectile.velocity + a * dt
     projectile.position = projectile.position + projectile.velocity * dt
