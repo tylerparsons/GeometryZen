@@ -8,7 +8,6 @@ from workbench import *
 from geometry import *
 
 
-
 # RailGun Properties
 I = 100
 dt = 0.01
@@ -25,23 +24,20 @@ k = VectorE3(0.0, 0.0, 1.0)
 workbench3D = Workbench3D(space3D.renderer.domElement, space3D.renderer, space3D.camera)
 
 # Projectile Definition
-def Projectile(x_0, m):
-    particle = SphereBuilder().color("red").radius(0.1).build()
-    particle.charge   = ScalarE3(1.0)
-    particle.mass     = ScalarE3(m)
-    particle.position = VectorE3(x_0, 0.0, 0.0)
-    particle.velocity = VectorE3(0.0, 0.0, 0.0)
-    space3D.add(particle)
-    return particle
-
-projectile = Projectile(1.0, 1.0)
+projectile = SphereBuilder().color("red").radius(0.1).build()
+projectile.charge   = ScalarE3(1.0)
+projectile.mass     = ScalarE3(1.0)
+projectile.position = VectorE3(1.0, 0.0, 0.0)
+projectile.velocity = VectorE3(0.0, 0.0, 0.0)
+space3D.add(projectile)
 
 # Model Animation
-def setup():
+def setUp():
     workbench3D.setUp()
 
 def tick(t):
     # Define quantities for calculation
+    print "tick"
     x = projectile.position
     m = projectile.mass
     # Solve equation of motion
@@ -52,7 +48,7 @@ def tick(t):
     space3D.render()
     
 def terminate(t):
-    pass
+    return False
 
 def tearDown():
     workbench3D.tearDown()
