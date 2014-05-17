@@ -4,8 +4,9 @@ RailGun.py
 @created    17 May 2014
 
 Visualization of a rail gun based on a
-numerical solution to the differential
-equation of motion.
+numerical solution to the analytically
+obtained differential equation of mot-
+ion.
 
 References:
 http://www.geometryzen.org/users/geometryzen/repos/demos/blob/master/Physics/qubit-visualization.py
