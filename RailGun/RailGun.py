@@ -1,8 +1,20 @@
 '''
 RailGun.py
+@author     Tyler Parsons
+@created    17 May 2014
+
+Visualization of a rail gun based on a
+numerical solution to the differential
+equation of motion.
+
+References:
+
+
 '''
 
 from browser import *
+from easel import *
+from math import sqrt
 from three import *
 from workbench import *
 from geometry import *
@@ -17,15 +29,27 @@ dt = 0.01
 
 # Model Geometry
 space3D = CartesianSpace()
+i = VectorE3(1, 0, 0)
 workbench3D = Workbench3D(space3D.renderer.domElement, space3D.renderer, space3D.camera)
 
 # Projectile Definition
-projectile = SphereBuilder().color("red").radius(0.1).build()
-projectile.charge   = ScalarE3(1.0)
+projectile = SphereBuilder().color("red").radius(w/2).build()
 projectile.mass     = ScalarE3(1.0)
 projectile.position = VectorE3(1.0, 0.0, 0.0)
 projectile.velocity = VectorE3(0.0, 0.0, 0.0)
 space3D.add(projectile)
+
+# Draw Bore
+boreLength = 10
+radiusTop = w/2
+radiusBottom = w/2
+height = boreLength*2
+radialSegments = 32
+heightSegments = boreLength
+openEnded = True
+cylinder = CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded, i)
+mesh = Mesh(cylinder, MeshNormalMaterial({"wireframe": True, "wireframeLinewidth": 1}))
+space3D.add(mesh)
 
 # Model Animation
 def setUp():
