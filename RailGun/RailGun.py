@@ -10,10 +10,10 @@ from geometry import *
 
 # RailGun Properties
 I = 100
-dt = 0.01
 mu_0 = 12.566E-7
 pi = 3.1415
 w = 1.0     # bore width
+dt = 0.01
 
 # Model Geometry
 space3D = CartesianSpace()
@@ -44,7 +44,9 @@ def tick(t):
     projectile.acceleration = ((mu_0*I**2*x)/(m*pi))*(sqrt(w**2 + x**2) - x)
     projectile.velocity = projectile.velocity + projectile.acceleration * dt
     projectile.position = projectile.position + projectile.velocity * dt
-    
+    # Follow projectile
+    space3D.camera.position.x = projectile.position.x
+    space3D.camera.lookAt(projectile.position)
     space3D.render()
     
 def terminate(t):
