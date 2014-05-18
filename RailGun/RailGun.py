@@ -78,6 +78,7 @@ space2D.addChild(vText)
 # Model Animation
 def setUp():
     workbench3D.setUp()
+    workbench2D.setUp()
 
 def step(t):
     # Define quantities for calculation
@@ -101,6 +102,7 @@ def terminate(t):
     return projectile.position.x > boreLength*2.5
 
 def tearDown(e):
+    workbench2D.tearDown()
     workbench3D.tearDown()
     if e:
         print e
