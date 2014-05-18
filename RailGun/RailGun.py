@@ -92,7 +92,7 @@ def setUp():
     workbench3D.setUp()
     workbench2D.setUp()
 
-def step(t):
+def tick(t):
     # Define quantities for calculation
     x = projectile.position
     m = projectile.mass
@@ -119,4 +119,4 @@ def tearDown(e):
     if e:
         print e
 
-WindowAnimationRunner(step, terminate, setUp, tearDown, window).start()
+WindowAnimationRunner(tick, terminate, setUp, tearDown, window).start()
