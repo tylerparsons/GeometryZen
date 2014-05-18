@@ -23,7 +23,7 @@ from geometry import *
 
 
 # RailGun Properties
-I = 1000
+I = 5000
 mu_0 = 12.566E-7
 pi = 3.1415
 w = 0.4     # bore width
@@ -66,13 +66,25 @@ workbench2D = Workbench2D(canvas2D)
 space2D = Stage(canvas2D)
 space2D.autoClear = True
 
+# Current
+iText = Text("I:    "+str(I), font, color)
+iText.x = 50
+iText.y = 50
+space2D.addChild(iText)
+# Bore Width
+wText = Text("w:    "+str(w), font, color)
+wText.x = 50
+wText.y = 75
+space2D.addChild(wText)
+# Position
 xText = Text("x:    "+str(projectile.position.x), font, color)
 xText.x = 50
-xText.y = 50
+xText.y = 100
 space2D.addChild(xText)
+# Velocity
 vText = Text("v:    "+str(projectile.velocity.x), font, color)
 vText.x = 50
-vText.y = 75
+vText.y = 125
 space2D.addChild(vText)
 
 # Model Animation
