@@ -23,7 +23,8 @@ from workbench import *
 
 
 # RailGun Properties
-I = 10000
+# Change I and w to adjust motion of particle
+I = 1000
 mu_0 = 12.566E-7
 pi = 3.1415
 w = 0.4     # bore width
