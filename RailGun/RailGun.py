@@ -22,6 +22,10 @@ from three import *
 from workbench import *
 
 
+########################
+# Model Initialization #
+########################
+
 # RailGun Properties
 # Change I and w to adjust motion of particle
 I = 1000
@@ -54,7 +58,9 @@ cylinder = CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, hei
 mesh = Mesh(cylinder, MeshNormalMaterial({"wireframe": True, "wireframeLinewidth": 1}))
 space3D.add(mesh)
 
-# Data Display Pane
+#####################
+# Data Display Pane #
+#####################
 canvas2D = document.createElement("canvas")
 canvas2D.style.position = "absolute"
 canvas2D.style.top = "0px"
@@ -66,28 +72,23 @@ workbench2D = Workbench2D(canvas2D)
 space2D = Stage(canvas2D)
 space2D.autoClear = True
 
-# Current
-iText = Text("I:    "+str(I), font, color)
-iText.x = 50
-iText.y = 50
-space2D.addChild(iText)
-# Bore Width
-wText = Text("w:    "+str(w), font, color)
-wText.x = 50
-wText.y = 75
-space2D.addChild(wText)
-# Position
-xText = Text("x:    "+str(projectile.position.x), font, color)
-xText.x = 50
-xText.y = 100
-space2D.addChild(xText)
-# Velocity
-vText = Text("v:    "+str(projectile.velocity.x), font, color)
-vText.x = 50
-vText.y = 125
-space2D.addChild(vText)
+# Create text object, return handle
+def displayText(text, x, y):
+    textBox = Text(text, font, color)
+    textBox.x = x
+    textBox.y = y
+    space2D.addChild(textBox)
+    return textBox
 
-# Model Animation
+# Display Qunatities
+iText = displayText("I:    "+str(I), 50, 50)
+wText = displayText("w:    "+str(w), 50, 75)
+xText = displayText("x:    "+str(projectile.position.x), 50, 100)
+vText = displayText("v:    "+str(projectile.velocity.x), 50, 125)
+
+###################
+# Model Animation #
+###################
 def setUp():
     workbench3D.setUp()
     workbench2D.setUp()
@@ -119,4 +120,5 @@ def tearDown(e):
     if e:
         print e
 
+# Run
 WindowAnimationRunner(tick, terminate, setUp, tearDown, window).start()
