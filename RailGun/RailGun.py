@@ -16,14 +16,14 @@ http://www.geometryzen.org/users/geometryzen/repos/demos/blob/master/Canvas-3D/G
 
 from browser import *
 from easel import *
+from geometry import *
 from math import sqrt
 from three import *
 from workbench import *
-from geometry import *
 
 
 # RailGun Properties
-I = 5000
+I = 10000
 mu_0 = 12.566E-7
 pi = 3.1415
 w = 0.4     # bore width
@@ -33,7 +33,6 @@ dt = 0.01
 space3D = CartesianSpace()
 i = VectorE3(1, 0, 0)
 workbench3D = Workbench3D(space3D.renderer.domElement, space3D.renderer, space3D.camera)
-space3D.renderer.setClearColor(0x777777, 1.0)
 
 # Projectile Definition
 projectile = SphereBuilder().color("red").radius(w/2).build()
@@ -111,7 +110,7 @@ def tick(t):
     space2D.render()
 
 def terminate(t):
-    return projectile.position.x > boreLength*2.5
+    return projectile.position.x > boreLength*3
 
 def tearDown(e):
     workbench2D.tearDown()
